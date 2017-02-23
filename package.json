@@ -4,7 +4,8 @@
   "description": "URL Shortener Service",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev" : "NODE_ENV=development nodemon ./server"
   },
   "repository": {
     "type": "git",

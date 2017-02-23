@@ -1,11 +1,11 @@
 const MongoClient = require('mongodb').MongoClient;
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config')[env];
-const {host, port, db} = config.database
 const mongoose = require('mongoose');
 const Url = require('./models/url');
 
-mongoose.connect(`mongodb://${host}/${db}`);
+
+mongoose.connect(config.mongo_uri);
 
 exports.addUrl = function (newUrl, reqhost, response) {
   if(isValidUrl(newUrl)){

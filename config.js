@@ -1,13 +1,6 @@
 var config = {
 development: {
-    //url to be used in link generation
-    url: 'http://localhost/',
-    //mongodb connection settings
-    database: {
-        host:   'localhost',
-        port:   '27017',
-        db:     'test'
-    },
+    mongo_uri : 'mongodb://localhost/test',
     //server details
     server: {
         host: '127.0.0.1',
@@ -15,18 +8,12 @@ development: {
     }
 },
 production: {
-    //url to be used in link generation
-    url: 'http://my.site.com',
-    //mongodb connection settings
-    database: {
-        host: 'localhost',
-        port: '27017',
-        db:     'test'
-    },
+
+    mongo_uri: process.env.MONGODB_URI,
     //server details
     server: {
         host:   '127.0.0.1',
-        port:   '3421'
+        port:   process.env.PORT 
     }
 }
 };
