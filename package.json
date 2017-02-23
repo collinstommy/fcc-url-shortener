@@ -1,0 +1,31 @@
+{
+  "name": "fcc-url-shortener",
+  "version": "1.0.0",
+  "description": "URL Shortener Service",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/collinstommy/fcc-url-shortener.git"
+  },
+  "keywords": [
+    "freecodecamp"
+  ],
+  "author": "Thomas Collins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/collinstommy/fcc-url-shortener/issues"
+  },
+  "homepage": "https://github.com/collinstommy/fcc-url-shortener#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "express": "^4.14.1",
+    "mocha": "^3.2.0",
+    "mongodb": "^2.2.24",
+    "mongoose": "^4.7.2",
+    "nodemon": "^1.11.0"
+  }
+}
