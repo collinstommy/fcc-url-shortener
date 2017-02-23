@@ -10,7 +10,11 @@ mongoose.connect(config.mongo_uri);
 exports.addUrl = function (newUrl, reqhost, response) {
   if(isValidUrl(newUrl)){
     Url.findOne().sort('-id').exec(function(err, url){ 
-      return SaveToDB(err, url, newUrl, response, reqhost)});
+      const id = 1;
+      if(url !== null){
+        id = url.id + 1;
+      }
+      return SaveToDB(err, id, newUrl, response, reqhost)});
   }
   else{
     const msg = getJSONResponse(null, null, null, newUrl + ' is not a valid Url. Url should be in format http://www.google.com');
@@ -32,8 +36,7 @@ exports.findUrlByID = function (id, response) {
 }
 
 
-function SaveToDB(err, url, newUrl, res, reqhost){
-    const newId = url.id + 1;
+function SaveToDB(err, newId, newUrl, res, reqhost){
     Url({ id: newId, url: newUrl }).save(function (err) {
       if (err){
         res.status(500);
