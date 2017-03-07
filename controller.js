@@ -22,15 +22,19 @@ exports.addUrl = function (newUrl, reqhost, response) {
   }
 }
 
-exports.findUrlByID = function (id, response) {
+exports.findUrlByID = function (id, res) {
   Url.findOne({ id: id }, (err, url) => {
     if (err){
-      response.status(500);
-      response.send(databaseError('access'));
+      res.status(500);
+      res.send(getJSONError('access'));
+    }
+    else if(url === null){
+      res.status(404);
+      res.send(getJSONError('find'));
     }
     else{
-      response.redirect(url.url);
-      response.end();
+      res.redirect(url.url);
+      res.end();
     }
   });
 }
@@ -40,7 +44,7 @@ function SaveToDB(err, newId, newUrl, res, reqhost){
     Url({ id: newId, url: newUrl }).save(function (err) {
       if (err){
         res.status(500);
-        const msg = databaseError('add');
+        const msg = getJSONError('add');
         res.body = msg
         res.send(msg);
       }
@@ -62,14 +66,11 @@ function isValidUrl(url){
   
 }
 
-function databaseError(operation){
-  return getJSONResponse(null, null, null, `Could not ${operation} record. Database error`);     
+function getJSONError(operation){
+  return JSON.stringify({'error': `Could not ${operation} record. Database error`});
 }
 
-function getJSONResponse(url, host, urlID, error) {
-  if(error)
-    return JSON.stringify({'error': error});
-
+function getJSONResponse(url, host, urlID) {
     return JSON.stringify({
       "original_url": url,
       "short_url": host + '/' + urlID

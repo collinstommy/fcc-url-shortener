@@ -1,5 +1,13 @@
 var config = {
 development: {
+    mongo_uri : 'mongodb://localhost/dev',
+    //server details
+    server: {
+        host: '127.0.0.1',
+        port: '8080'
+    }
+},
+test: {
     mongo_uri : 'mongodb://localhost/test',
     //server details
     server: {
